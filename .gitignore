@@ -7,4 +7,6 @@ target
 /.settings
 /.metals
 /.bloop
+/.vscode
+/.bsp
 /RUNNING_PID
