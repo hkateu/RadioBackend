@@ -10,3 +10,11 @@ target
 /.vscode
 /.bsp
 /RUNNING_PID
+
+#vscode
+project
+.bloop
+.metals
+.g8
+.bsp
+.vscode

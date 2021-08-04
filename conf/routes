@@ -10,7 +10,7 @@
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 #React Routes
-#GET     /                           controllers.Joblist.index()
+GET     /                           controllers.RadioController.index()
 
 +nocsrf
 GET     /staticdata/:name           controllers.RadioController.staticData(name: String)
@@ -20,3 +20,9 @@ GET     /getflname/:name           controllers.RadioController.getflname(name: S
 GET     /getradios/                 controllers.RadioController.getRadios()
 
 GET     /getshows/:id           controllers.RadioController.getShow(id: Int)
+
+#POST    /vsignIn                 controllers.RadioController.signIn()
+
+GET     /getToken               controllers.RadioController.getToken
+
+POST    /login                     controllers.RadioController.signIn

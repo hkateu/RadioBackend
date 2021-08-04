@@ -1,5 +1,10 @@
-
 @main("Login"){
-    <p>Html loaded</p>
-    <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/babel"></script>
+<p>Html loaded</p>
+<!-- <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/babel"></script> -->
+<form method="post" action="login">
+  Username: <input type="text" name="username" />
+  <br />
+  Password: <input type="text" name="password" />
+  <button type="submit">Submit</button>
+</form>
 }

@@ -13,9 +13,9 @@ class RadioModel(db: Database)(implicit ec: ExecutionContext){
   matches.map(usersRow => usersRow.nonEmpty)
  }
 
- def getNames(name: String): Future[Seq[(String, String)]] = {
+ def getNames(email: String): Future[Seq[(String, String)]] = {
   val matches = for{
-      u <- Users if u.username === name
+      u <- Users if u.email === email
   } yield (u.firstname, u.lastname)
   val myNames = db.run(matches.result)
   myNames.map(userNames => userNames)
@@ -37,4 +37,10 @@ def getShows(id:Int = 0) : Future[Seq[(Int, String, String, String, Option[Int])
   val myShows = db.run(matches.result)
   myShows.map(rshows => rshows)
  }
+
+ def validateLogin(email:String, password: String): Future[Boolean] = {
+   val matches = db.run(Users.filter(UsersRow => UsersRow.email === email && UsersRow.password === password).result)
+  matches.map(userRows => userRows.nonEmpty)
+   }
+
 }

@@ -1,3 +1,3 @@
 package models
 
-case class UserData(firstName: String, lastName: String)
+case class UserData(email: String, password: String)
