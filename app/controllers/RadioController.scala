@@ -54,8 +54,8 @@ extends BaseController with HasDatabaseConfigProvider[JdbcProfile] {
          }
     }
 
-    def getflname(name: String) = Action.async{ implicit request =>
-         model.getNames(name).map{names =>
+    def getflname(email: String) = Action.async{ implicit request =>
+         model.getNames(email).map{names =>
             Ok(Json.toJson(names))
          }
     }
