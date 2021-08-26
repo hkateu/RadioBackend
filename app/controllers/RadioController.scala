@@ -27,6 +27,7 @@ extends BaseController with HasDatabaseConfigProvider[JdbcProfile] {
     }
 
      implicit val userDataReads: Reads[UserData] = Json.reads[UserData]
+     implicit val userInsertReads: Reads[UInsertData] = Json.reads[UInsertData]
 
     // def gotData() = Action{ implicit request: Request[AnyContent] =>
     //     request.body.asJson.map{body =>
@@ -44,15 +45,15 @@ extends BaseController with HasDatabaseConfigProvider[JdbcProfile] {
      Ok(Json.toJson(value))
       })
 
-    def staticData(name: String) = Action.async{ implicit request =>
-         model.getUsers(name).map{userExists =>
-            if(userExists){
-            Ok(Json.toJson((true)))
-         }else{
-            Ok(Json.toJson((false)))
-         }
-         }
-    }
+   //  def staticData(name: String) = Action.async{ implicit request =>
+   //       model.getUsers(name).map{userExists =>
+   //          if(userExists){
+   //          Ok(Json.toJson((true)))
+   //       }else{
+   //          Ok(Json.toJson((false)))
+   //       }
+   //       }
+   //  }
 
     def getflname(email: String) = Action.async{ implicit request =>
          model.getNames(email).map{names =>
@@ -85,6 +86,25 @@ extends BaseController with HasDatabaseConfigProvider[JdbcProfile] {
             }
             }
       }
+   }
+
+   def registerListener = Action.async { implicit request =>
+      withJsonBody[UInsertData] { ud =>
+         // model.checkIfUserExists(ud.email).map{userExists =>
+         //    if(userExists){
+         //       Ok(Json.toJson(true))
+         //    }else{
+         model.regListener(ud.firstname, ud.lastname, ud.email, ud.password, ud.birthday, ud.gender).map{userAdded => 
+               if(userAdded){
+                  Ok(Json.toJson(true))
+               }else{
+                  Ok(Json.toJson(false))
+               }
+            }
+         }
+            
+      // }
+   // }
    }
 
    // def signIn = Action { implicit request =>

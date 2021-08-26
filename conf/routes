@@ -13,7 +13,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET     /                           controllers.RadioController.index()
 
 +nocsrf
-GET     /staticdata/:name           controllers.RadioController.staticData(name: String)
+#GET     /staticdata/:name           controllers.RadioController.staticData(name: String)
 
 GET     /getflname/:name           controllers.RadioController.getflname(name: String)
 
@@ -26,3 +26,5 @@ GET     /getshows/:id           controllers.RadioController.getShow(id: Int)
 GET     /getToken               controllers.RadioController.getToken
 
 POST    /login                     controllers.RadioController.signIn
+
+POST    /reglistener               controllers.RadioController.registerListener
