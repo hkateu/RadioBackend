@@ -1,17 +1,19 @@
-CREATE TABLE users (
-    userId INT(255) AUTO_INCREMENT PRIMARY KEY,
-    userName VARCHAR(50) UNIQUE NOT NULL,
+CREATE TABLE myusers (
+    myuserId SERIAL PRIMARY KEY,
     password VARCHAR(50) NOT NULL,
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
+    bithday DATE NOT NULL,
+    gender VARCHAR(10) NOT NULL,
     createdOn TIMESTAMP NOT NULL,
     lastLogIn TIMESTAMP NOT NULL
 );
 
 CREATE TABLE radio (
-    radioId INT(255) AUTO_INCREMENT PRIMARY KEY,
+    radioId SERIAL PRIMARY KEY,
     station VARCHAR(50) NOT NULL,
+    stnid VARCHAR(50) NOT NULL,
     frequency VARCHAR(50) NOT NULL,
     location VARCHAR(50) NOT NULL,
     url VARCHAR(255) NOT NULL,
@@ -19,10 +21,11 @@ CREATE TABLE radio (
 );
 
 CREATE TABLE shows (
-    showsId INT NOT NULL PRIMARY KEY,
+    showsId SERIAL PRIMARY KEY,
     shows VARCHAR(255) NOT NULL,
-    showTime VARCHAR(50) NOT NULL,
+    showTime TIMESTAMP NOT NULL,
     likes INT,
+    showDesc TEXT NOT NULL,
     radioId INT NOT NULL,
     CONSTRAINT fk_radio
     FOREIGN KEY (radioId)
@@ -32,13 +35,13 @@ CREATE TABLE shows (
 );
 
 CREATE TABLE favourites (
-    favId INT PRIMARY KEY,
+    favId SERIAL PRIMARY KEY,
     shows  TEXT,
     stations TEXT,
-    userId INT NOT NULL,
+    myuserId INT NOT NULL,
     CONSTRAINT fk_user
-    FOREIGN KEY (userId)
-    REFERENCES users (userId)
+    FOREIGN KEY (myuserId)
+    REFERENCES myusers (myuserId)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );

@@ -10,7 +10,7 @@ class RadioModel(db: Database)(implicit ec: ExecutionContext){
   
 //  def getUsers(name: String): Future[Boolean]  = {
 //   val matches = db.run(Users.filter(UsersRow => UsersRow.username === name).result)
-//   matches.map(usersRow => usersRow.nonEmpty)
+//   matches.map(UsersRow => UsersRow.nonEmpty)
 //  }
 
  def getNames(email: String): Future[Seq[(String, String)]] = {
