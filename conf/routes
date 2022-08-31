@@ -28,3 +28,8 @@ GET     /getToken               controllers.RadioController.getToken
 POST    /login                     controllers.RadioController.signIn
 
 POST    /reglistener               controllers.RadioController.registerListener
+
+#Routes for chat app 
+
+GET     /chat                   controllers.ChatController.Index
+GET     /chatSocket             controllers.ChatController.socket
